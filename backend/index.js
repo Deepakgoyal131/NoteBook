@@ -1,11 +1,13 @@
 const connectToMongo = require('./db');
 const express = require('express')
 var cors = require('cors');
+const env = require('dotenv');
+env.config();
 
-connectToMongo();
-
+connectToMongo(process.env.MONGO_URI);
+ 
 const app = express()
-const port = 5000
+const port = process.env.PORT || 3000;
          
 // app.get('/', (req, res) => {
 //   res.send('Hello Deepak !') 
