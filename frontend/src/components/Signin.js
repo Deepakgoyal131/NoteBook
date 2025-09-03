@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+     
 function Signin(props) {
     const [credentials, setCredentials] = useState({ email: "", password: "" });
     const navigate = useNavigate();
+    const host = process.env.REACT_APP_API_HOST;
 
     const handleSubmit = async (e) => {
         e.preventDefault();  // ye nhi karenge to page ho jaye ga Reload
@@ -14,7 +15,7 @@ function Signin(props) {
         }
         // API call
         try {
-            const response = await fetch(`http://localhost:5000/api/auth/login`, {
+            const response = await fetch(`${host}/api/auth/login`, {
                 method: "POST", // *GET, POST, PUT, DELETE, etc.
                 headers: {
                     "Content-Type": "application/json"
@@ -24,15 +25,14 @@ function Signin(props) {
             const json = await response.json();
             // console.log(json);
 
-
+            
             if (json.success) {
-                //redirect
+                //redirect      
                 localStorage.setItem('token', json.authToken);
                 navigate('/');
                 props.showAlert("Logined SuccessFully", 'sucsses')
                 // console.log(json.authToken)
-
-            }
+            }    
             else {
                 props.showAlert(json.error, 'danger')
             }

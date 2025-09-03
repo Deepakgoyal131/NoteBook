@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 function Signup(props) {
   const [credentials, setCredentials] = useState({ name: "", email: "", password: "", cpassword: "" });
   const navigate = useNavigate();
-
+  const host = process.env.REACT_APP_API_HOST;
   const handleSubmit = async (e) => {
     e.preventDefault();  // ye nhi karenge to page ho jaye ga Reload
 
@@ -14,7 +14,7 @@ function Signup(props) {
     }
     // API call
     try {
-      const response = await fetch(`http://localhost:5000/api/auth/createuser`, {
+      const response = await fetch(`${host}/api/auth/createuser`, {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         headers: {
           "Content-Type": "application/json"
