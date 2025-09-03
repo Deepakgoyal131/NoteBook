@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');//this for more security
 
 const fetchuser = require('../middleware/fetchuser');
 const router = express.Router();
+
 const JWT_SECRET = "Deepakisgoodboy$";
 
 //ROUTE 1:Create a User using: POST "api/auth/createuser" NO login required .
