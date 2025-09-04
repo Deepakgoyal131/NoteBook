@@ -39,8 +39,8 @@ function Signin(props) {
         } catch (error) {
             console.error("Error during fetch:", error);
             props.showAlert("Something went wrong! Try again later", 'danger');
+              
         }
-
     }
 
     const onChange = (e) => {
