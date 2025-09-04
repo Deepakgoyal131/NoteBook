@@ -2,24 +2,33 @@ import React from 'react'
 
 function Alert(props) {
 
-    const capitalize = (word)=> {
-        if(word === "danger"){
+    const capitalize = (word) => {
+        if (word === "danger") {
             word = "Error";
         }
-           const lower =  word.toLowerCase();
-           return lower.charAt(0).toUpperCase() + lower.slice(1);
+        const lower = word.toLowerCase();
+        return lower.charAt(0).toUpperCase() + lower.slice(1);
     }
     return (
-  /* props.alert && ---use for if props.alert me kuch ni he to uske age ka code nhi dekhe ga lekin props.alert me kuch he to age ka code dekha ga useke */
-          <>  
-          <div style={{height : "50px"}}>
-  {props.alert && 
-            <div className={`alert alert-${props.alert.type} alert-dismissible fade show `}role="alert">
-                <strong>{capitalize(props.alert.type)}</strong> : {props.alert.msg}
-                
-            </div>}
+        /* props.alert && ---use for if props.alert me kuch ni he to uske age ka code nhi dekhe ga lekin props.alert me kuch he to age ka code dekha ga useke */
+        <>
+            <div style={{
+                position: "fixed",
+                zIndex: "1000",
+                left: "50%",
+                transform: "translateX(-50%)",
+                top: "70px",
+                width: "90%",
+                maxWidth: "600px",
+                textAlign: "center"
+            }}>             
+                {props.alert &&
+                    <div className={`alert alert-${props.alert.type} alert-dismissible fade show`} role="alert">
+                        <strong>{capitalize(props.alert.type)}</strong> : {props.alert.msg}
+
+                    </div>}
             </div>
-            </>
+        </>
     )
 }
 

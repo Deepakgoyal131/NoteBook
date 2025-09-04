@@ -53,7 +53,7 @@ const Notes = (props) => {
       <button type="button" ref={ref} className="btn btn-primary d-none" data-toggle="modal" data-target="#exampleModal" id="D">
         Launch demo modal
       </button>
-      <div className="modal fade note-modal" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal fade note-modal" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">

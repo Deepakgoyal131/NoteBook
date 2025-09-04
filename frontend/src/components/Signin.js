@@ -30,7 +30,7 @@ function Signin(props) {
                 //redirect      
                 localStorage.setItem('token', json.authToken);
                 navigate('/user');
-                props.showAlert("Logined SuccessFully", 'sucsses')
+                props.showAlert("Logined SuccessFully", 'success')
                 
             }    
             else {

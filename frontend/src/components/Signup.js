@@ -13,6 +13,11 @@ function Signup(props) {
       props.showAlert("Please fill in all fields", 'danger');
       return;
     }
+    if(credentials.password !== credentials.cpassword){
+      props.showAlert("Passwords do not match", 'danger');
+      return;
+    }
+
     // API call
     try {
       const response = await fetch(`${host}/api/auth/createuser`, {
@@ -29,7 +34,7 @@ function Signup(props) {
         localStorage.setItem('token', json.authToken);
         //redirect      
         navigate('/user');
-        props.showAlert("Account Created SuccessFully", 'sucsses')
+        props.showAlert("Account Created SuccessFully", 'success')
       }
       else {
         props.showAlert(json.error, 'danger')
