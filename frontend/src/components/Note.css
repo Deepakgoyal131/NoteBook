@@ -1,0 +1,349 @@
+.note-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.note-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.note-header h2 {
+    color: #1a237e;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.note-header p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.note-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.note-form-group {
+    position: relative;
+}
+
+.note-form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.note-form-group input,
+.note-form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.note-form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.note-form-group input:focus,
+.note-form-group textarea:focus {
+    border-color: #1a237e;
+    box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1);
+    outline: none;
+    background-color: white;
+}
+
+.note-form-group .character-count {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.note-button {
+    background-color: #1a237e;
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.note-button:hover:not(:disabled) {
+    background-color: #0d47a1;
+    transform: translateY(-2px);
+}
+
+.note-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Note Item Styles */
+.note-item {
+    height: 100%;
+}
+
+.note-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+    border: 1px solid #e0e0e0;
+    position: relative;
+    overflow: hidden;
+}
+
+.note-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.note-card-body {
+    padding: 1.5rem;
+}
+
+.note-card-title {
+    color: #1a237e;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.note-card-text {
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.note-card-tag {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.note-card-actions {
+    display: flex;
+    gap: 0.5rem;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.note-card:hover .note-card-actions {
+    opacity: 1;
+}
+
+.note-action-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.note-action-btn.delete {
+    color: #dc3545;
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+.note-action-btn.edit {
+    color: #1a237e;
+    background-color: rgba(26, 35, 126, 0.1);
+}
+
+.note-action-btn:hover.delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.note-action-btn:hover.edit {
+    background-color: #1a237e;
+    color: white;
+}
+
+.tag-input {
+    position: relative;
+}
+
+/* Notes List Section */
+.notes-container {
+    padding: 2rem 1rem;
+}
+
+.notes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}
+
+.notes-title {
+    color: #1a237e;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.empty-notes {
+    text-align: center;
+    padding: 3rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin: 2rem 0;
+}
+
+.empty-notes-icon {
+    font-size: 3rem;
+    color: #1a237e;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.empty-notes-text {
+    color: #666;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+/* Modal Styles */
+.note-modal .modal-content {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.note-modal .modal-header {
+    background-color: #1a237e;
+    color: white;
+    border-radius: 12px 12px 0 0;
+    padding: 1.5rem;
+}
+
+.note-modal .modal-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.note-modal .modal-body {
+    padding: 2rem;
+}
+
+.note-modal .close {
+    /* color: white; */
+    color: #1a237e;
+    background-color: whitesmoke;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.note-modal .close:hover {
+    opacity: 1;
+}
+
+.note-modal .modal-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.note-modal-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.note-modal-btn.secondary {
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+}
+
+.note-modal-btn.secondary:hover {
+    background-color: #d0d0d0;
+}
+
+.note-modal-btn.primary {
+    background-color: #1a237e;
+    color: white;
+    border: none;
+}
+
+.note-modal-btn.primary:hover:not(:disabled) {
+    background-color: #0d47a1;
+}
+
+.note-modal-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Notes Grid Layout */
+.notes-grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -1rem;
+}
+
+.notes-grid > * {
+    padding: 1rem;
+}
+
+.tag-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.tag-hint {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.5rem;
+    font-style: italic;
+}

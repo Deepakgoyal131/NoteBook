@@ -3,6 +3,7 @@ import noteContext from '../context/notes/noteContext'
 import Noteitem from './Noteitem';
 import AddNote from './AddNote'
 import { useNavigate } from 'react-router-dom';
+import './Note.css';
 
 const Notes = (props) => {
   const context = useContext(noteContext);
@@ -52,47 +53,98 @@ const Notes = (props) => {
       <button type="button" ref={ref} className="btn btn-primary d-none" data-toggle="modal" data-target="#exampleModal" id="D">
         Launch demo modal
       </button>
-      <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal fade note-modal" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">Edit Note</h5>
+              <h5 className="modal-title" id="exampleModalLabel">
+                <i className="fas fa-edit me-2"></i>
+                Edit Note
+              </h5>
               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div className="modal-body">
-              <form>
-                <div className="mb-3">
-                  <label htmlFor="title" className="form-label">TITLE</label>
-                  <input type="text" className="form-control" id="etitle" name="etitle" value={note.etitle} aria-describedby="emailHelp" onChange={onChange} minLength={3} required/>
+              <form className="note-form">
+                <div className="note-form-group">
+                  <label htmlFor="etitle">Title</label>
+                  <input 
+                    type="text" 
+                    id="etitle" 
+                    name="etitle" 
+                    value={note.etitle} 
+                    onChange={onChange} 
+                    minLength={3} 
+                    required
+                    placeholder="Enter note title"
+                  />
+                  <div className="character-count">{note.etitle.length}/50</div>
                 </div>
-                <div className="mb-3">
-                  <label htmlFor="description" className="form-label">DESCRIPTION</label>
-                  <input type="text" className="form-control" id="edescription" name='edescription' value={note.edescription} onChange={onChange} minLength={5} required/>
+                <div className="note-form-group">
+                  <label htmlFor="edescription">Description</label>
+                  <textarea 
+                    id="edescription" 
+                    name="edescription" 
+                    value={note.edescription} 
+                    onChange={onChange} 
+                    minLength={5} 
+                    required
+                    placeholder="Enter note description"
+                    rows="4"
+                  />
+                  <div className="character-count">{note.edescription.length}/200</div>
                 </div>
-                <div className="mb-3">
-                  <label htmlFor="description" className="form-label">Tag</label>
-                  <input type="text" className="form-control" id="etag" name='etag' value={note.etag} onChange={onChange} />
+                <div className="note-form-group">
+                  <label htmlFor="etag">Tags</label>
+                  <input 
+                    type="text" 
+                    id="etag" 
+                    name="etag" 
+                    value={note.etag} 
+                    onChange={onChange}
+                    placeholder="Enter tags (e.g., work, personal, ideas)" 
+                  />
                 </div>
               </form>
-
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-dismiss="modal" ref={refCloss}>Close</button>
-              <button disabled = {note.etitle.length<3 || note.edescription.length<5} type="button" className="btn btn-primary" onClick={handleClick}>Save changes</button>
+              <button type="button" className="note-modal-btn secondary" data-dismiss="modal" ref={refCloss}>
+                Cancel
+              </button>
+              <button 
+                disabled={note.etitle.length < 3 || note.edescription.length < 5} 
+                type="button" 
+                className="note-modal-btn primary" 
+                onClick={handleClick}
+              >
+                Save Changes
+              </button>
             </div>
           </div>
         </div>
       </div>
-      <div className="row my-3">
-        <h1>Your Notes</h1>
-        <div className="container mx-2">
-           {notes.length === 0 && 'No Notes to Display'}
-        </div> 
-        {notes.map((note) => {
-          return <Noteitem key={note._id} updateNote={updateNote} note={note} />
-        })}
+      
+      <div className="notes-container">
+        <div className="notes-header">
+          <h1 className="notes-title">Your Notes</h1>
+        </div>
+        
+        {notes.length === 0 ? (
+          <div className="empty-notes">
+            <div className="empty-notes-icon">
+              <i className="fas fa-notebook"></i>
+            </div>
+            <h3 className="empty-notes-text">No Notes Yet</h3>
+            <p>Create your first note by clicking the form above!</p>
+          </div>
+        ) : (
+          <div className="notes-grid">
+            {notes.map((note) => (
+              <Noteitem key={note._id} updateNote={updateNote} note={note} />
+            ))}
+          </div>
+        )}
       </div>
     </>
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import './Auth.css';
      
 function Signin(props) {
     const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -23,15 +24,14 @@ function Signin(props) {
                 body: JSON.stringify({ email: credentials.email, password: credentials.password })
             });
             const json = await response.json();
-            // console.log(json);
 
             
             if (json.success) {
                 //redirect      
                 localStorage.setItem('token', json.authToken);
-                navigate('/');
+                navigate('/user');
                 props.showAlert("Logined SuccessFully", 'sucsses')
-                // console.log(json.authToken)
+                
             }    
             else {
                 props.showAlert(json.error, 'danger')
@@ -47,18 +47,40 @@ function Signin(props) {
         setCredentials({ ...credentials, [e.target.name]: e.target.value });
     }
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Email address</label>
-                    <input type="email" className="form-control" id="email" name="email" aria-describedby="emailHelp" onChange={onChange} value={credentials.email} required />
-                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+        <div className="auth-container">
+            <div className="auth-header">
+                <h2>Welcome Back</h2>
+                <p>Sign in to continue to iNoteBook</p>
+            </div>
+            <form onSubmit={handleSubmit} className="auth-form">
+                <div className="form-group">
+                    <label htmlFor="email">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="Enter your email"
+                        onChange={onChange} 
+                        value={credentials.email} 
+                        required 
+                    />
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="password" name="password" value={credentials.password} onChange={onChange} required/>
+                <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Enter your password"
+                        value={credentials.password} 
+                        onChange={onChange} 
+                        required
+                    />
                 </div>
-                <button type="submit" className="btn btn-primary" >Login</button>
+                <button type="submit" className="auth-button">Sign In</button>
+                <div className="auth-link">
+                    New to iNoteBook? <Link to="/signup">Create an account</Link>
+                </div>
             </form>
         </div>
     )
