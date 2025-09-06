@@ -5,18 +5,18 @@ import { useNavigate } from 'react-router-dom';
 const NoteBookInfo = () => {
     const navigate = useNavigate();
   return (
-    <div className="notebook-info">
+    <div className="Digital NoteBook-info">
       <div className="info-container">
         <div className="header-section">
-          <h1>Welcome to NoteBook</h1>
+          <h1>Welcome to Digital NoteBook</h1>
           <p className="tagline">Your Personal Digital Note Management System</p>
         </div>
         
         <div className="description-section">
           <p>
-            NoteBook is designed to help users create,
+            Digital NoteBook is designed to help users create,
             manage, and organize their personal notes in a seamless and user-friendly
-            manner. Built using modern web technologies, NoteBook offers a smooth
+            manner. Built using modern web technologies, Digital NoteBook offers a smooth
             and efficient experience for users to keep track of their thoughts,
             ideas, and important information.
           </p>

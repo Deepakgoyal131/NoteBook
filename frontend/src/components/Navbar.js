@@ -23,7 +23,7 @@ const Navbar = () => {
             <div className="nav-container">
                 <Link to="/" className="nav-brand" onClick={closeMenu}>
                     <i className="fas fa-book-open brand-icon"></i>
-                    <span className="brand-text">iNoteBook</span>
+                    <span className="brand-text">Digital NoteBook</span>
                 </Link>
                 
                 <button 

@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="footer-section">
           <div className="footer-brand">
             <i className="fas fa-book-open footer-icon"></i>
-            <span>iNoteBook</span>
+            <span>Digital NoteBook</span>
           </div>
           <p className="footer-description">
             Your secure digital NoteBook for organizing thoughts and ideas.
@@ -20,7 +20,7 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <div className="copyright">
-            © {currentYear} iNoteBook. All rights reserved.
+            © {currentYear} Digital NoteBook. All rights reserved.
           </div>
           <div className="developer">
             Designed & Developed by <span className="highlight">The Goyal's</span>

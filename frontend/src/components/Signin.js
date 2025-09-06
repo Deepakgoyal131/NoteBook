@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { PacmanLoader } from 'react-spinners';
 import './Auth.css';
      
 function Signin(props) {
     const [credentials, setCredentials] = useState({ email: "", password: "" });
+    const [loading, setLoading] = useState(false);
+
     const navigate = useNavigate();
     const host = process.env.REACT_APP_API_HOST;
 
@@ -14,6 +17,7 @@ function Signin(props) {
             props.showAlert("Please fill in all fields", 'danger');
             return;
         }
+        setLoading(true);
         // API call
         try {
             const response = await fetch(`${host}/api/auth/login`, {
@@ -38,8 +42,10 @@ function Signin(props) {
             }
         } catch (error) {
             console.error("Error during fetch:", error);
-            props.showAlert("Something went wrong! Try again later", 'danger');
-              
+            props.showAlert("Something went wrong! Try again later", 'danger');       
+        }
+        finally{
+            setLoading(false);
         }
     }
 
@@ -50,7 +56,7 @@ function Signin(props) {
         <div className="auth-container">
             <div className="auth-header">
                 <h2>Welcome Back</h2>
-                <p>Sign in to continue to iNoteBook</p>
+                <p>Sign in to continue to Digital NoteBook</p>
             </div>
             <form onSubmit={handleSubmit} className="auth-form">
                 <div className="form-group">
@@ -77,9 +83,9 @@ function Signin(props) {
                         required
                     />
                 </div>
-                <button type="submit" className="auth-button">Sign In</button>
+               {!loading ?<button type="submit" className="auth-button">Login</button> : <button type="button" className="auth-button" style={{display: 'flex', justifyContent: 'center'}}disabled><PacmanLoader size={10} color="#ffffff"/></button>} 
                 <div className="auth-link">
-                    New to iNoteBook? <Link to="/signup">Create an account</Link>
+                    New to Digital NoteBook? <Link to="/signup">Create an account</Link>
                 </div>
             </form>
         </div>

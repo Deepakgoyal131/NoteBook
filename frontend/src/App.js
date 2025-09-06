@@ -39,7 +39,7 @@ function App() {
             <header className="app-header">
               <h1 className="app-title">
                 <i className="fas fa-book-open"></i>
-                iNoteBook
+                Digital NoteBook
               </h1>
               <p className="app-subtitle">Your personal digital notebook for capturing ideas and thoughts</p>
             </header>

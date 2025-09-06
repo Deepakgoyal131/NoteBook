@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { PacmanLoader } from 'react-spinners';
 import './Auth.css';
 
 function Signup(props) {
   const [credentials, setCredentials] = useState({ name: "", email: "", password: "", cpassword: "" });
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const host = process.env.REACT_APP_API_HOST;
   const handleSubmit = async (e) => {
@@ -18,6 +20,7 @@ function Signup(props) {
       return;
     }
 
+    setLoading(true);
     // API call
     try {
       const response = await fetch(`${host}/api/auth/createuser`, {
@@ -28,8 +31,7 @@ function Signup(props) {
         body: JSON.stringify({ name: credentials.name, email: credentials.email, password: credentials.password })
       });
       const json = await response.json();
-      // console.log(json);
-
+      
       if (json.success) {
         localStorage.setItem('token', json.authToken);
         //redirect      
@@ -43,6 +45,9 @@ function Signup(props) {
       console.error("Error during fetch:", error);
       props.showAlert("Something went wrong! Try again later", 'danger');
     }
+    finally{
+      setLoading(false);
+    }
 
   }
 
@@ -53,7 +58,7 @@ function Signup(props) {
     <div className="auth-container">
       <div className="auth-header">
         <h2>Create Account</h2>
-        <p>Start your journey with iNoteBook</p>
+        <p>Start your journey with Digital NoteBook</p>
       </div>
       <form onSubmit={handleSubmit} className="auth-form">
         <div className="form-group">
@@ -108,7 +113,7 @@ function Signup(props) {
             required
           />
         </div>
-        <button type="submit" className="auth-button">Create Free Account</button>
+        {!loading ? <button type="submit" className="auth-button">Create Free Account</button> : <button type="button" className="auth-button" style={{display: 'flex', justifyContent: 'center'}} disabled><PacmanLoader size={10} color="#ffffff"/></button>}
         <div className="auth-link">
           Already have an account? <Link to="/login">Sign in</Link>
         </div>
