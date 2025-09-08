@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { PacmanLoader } from 'react-spinners';
 import './Auth.css';
-     
+
 function Signin(props) {
     const [credentials, setCredentials] = useState({ email: "", password: "" });
     const [loading, setLoading] = useState(false);
@@ -13,7 +13,7 @@ function Signin(props) {
     const handleSubmit = async (e) => {
         e.preventDefault();  // ye nhi karenge to page ho jaye ga Reload
 
-        if(!credentials.email || !credentials.password){
+        if (!credentials.email || !credentials.password) {
             props.showAlert("Please fill in all fields", 'danger');
             return;
         }
@@ -29,23 +29,41 @@ function Signin(props) {
             });
             const json = await response.json();
 
-            
+
             if (json.success) {
                 //redirect      
                 localStorage.setItem('token', json.authToken);
+                getUser();
                 navigate('/user');
                 props.showAlert("Logined SuccessFully", 'success')
-                
-            }    
+
+            }
             else {
                 props.showAlert(json.error, 'danger')
             }
         } catch (error) {
             console.error("Error during fetch:", error);
-            props.showAlert("Something went wrong! Try again later", 'danger');       
+            props.showAlert("Something went wrong! Try again later", 'danger');
         }
-        finally{
+        finally {
             setLoading(false);
+        }
+    }
+
+    const getUser = async () => {
+        try {
+            const response = await fetch(`${host}/api/auth/getuser`, {
+                method: "GET", // *GET, POST, PUT, DELETE, etc.
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token": localStorage.getItem('token')
+                }
+            });
+            const json = await response.json();
+
+            localStorage.setItem('name', json.user.name);
+        } catch (error) {
+            alert("Unable to Fetch User Details")
         }
     }
 
@@ -61,29 +79,29 @@ function Signin(props) {
             <form onSubmit={handleSubmit} className="auth-form">
                 <div className="form-group">
                     <label htmlFor="email">Email Address</label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
                         placeholder="Enter your email"
-                        onChange={onChange} 
-                        value={credentials.email} 
-                        required 
+                        onChange={onChange}
+                        value={credentials.email}
+                        required
                     />
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
                         placeholder="Enter your password"
-                        value={credentials.password} 
-                        onChange={onChange} 
+                        value={credentials.password}
+                        onChange={onChange}
                         required
                     />
                 </div>
-               {!loading ?<button type="submit" className="auth-button">Login</button> : <button type="button" className="auth-button" style={{display: 'flex', justifyContent: 'center'}}disabled><PacmanLoader size={10} color="#ffffff"/></button>} 
+                {!loading ? <button type="submit" className="auth-button">Login</button> : <button type="button" className="auth-button" style={{ display: 'flex', justifyContent: 'center' }} disabled><PacmanLoader size={10} color="#ffffff" /></button>}
                 <div className="auth-link">
                     New to Digital NoteBook? <Link to="/signup">Create an account</Link>
                 </div>

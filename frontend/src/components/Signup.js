@@ -34,6 +34,7 @@ function Signup(props) {
       
       if (json.success) {
         localStorage.setItem('token', json.authToken);
+        getUser();
         //redirect      
         navigate('/user');
         props.showAlert("Account Created SuccessFully", 'success')
@@ -50,6 +51,23 @@ function Signup(props) {
     }
 
   }
+
+  const getUser = async () => {
+        try {
+            const response = await fetch(`${host}/api/auth/getuser`, {
+                method: "GET", // *GET, POST, PUT, DELETE, etc.
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token": localStorage.getItem('token')
+                }
+            });
+            const json = await response.json();
+
+            localStorage.setItem('name', json.user.name);
+        } catch (error) {
+            alert("Unable to Fetch User Details")
+        }
+    }
 
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });

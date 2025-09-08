@@ -4,6 +4,7 @@ import './Note.css'
 
 const AddNote = () => {
     const context = useContext(noteContext);
+    
     const {addNote} = context;
 
     const [note, setNote] = useState({title:"",description:"",tag:""})
@@ -12,16 +13,16 @@ const AddNote = () => {
         e.preventDefault();
         addNote(note.title,note.description,note.tag);
         setNote({title:"",description:"",tag:""})
-        
-    }
+    }    
 
     const onChange =(e)=>{
         setNote({...note, [e.target.name]: e.target.value});
     }
+
   return (
     <div className="note-container">
       <div className="note-header">
-        <h2>Create New Note</h2>
+        <h2>Welcome {localStorage.getItem('name')}</h2>
         <p>Capture your thoughts, ideas, and reminders</p>
       </div>
       <form className="note-form">

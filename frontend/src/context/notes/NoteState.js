@@ -9,6 +9,7 @@ const NoteState = (props) => {
 
   const [notes, setNotes] = useState(notesInitial)
 
+  
   //Get all Note     
   const getNotes = async () => {
     // API call
