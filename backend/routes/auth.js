@@ -7,7 +7,8 @@ const jwt = require('jsonwebtoken');//this for more security
 const fetchuser = require('../middleware/fetchuser');
 const router = express.Router();
 
-const JWT_SECRET = "Deepakisgoodboy$";
+const env = require('dotenv').config();
+const JWT_SECRET = process.env.JWT_SECRET;
 
 //ROUTE 1:Create a User using: POST "api/auth/createuser" NO login required .
 router.post('/createuser',[
@@ -30,7 +31,7 @@ router.post('/createuser',[
       success=false;
       return res.status(400).json({success, error: "This User already Exists"})
     }
-
+    
     //for security of Password
     const salt = await bcrypt.genSaltSync(10);
     const secPass = await bcrypt.hash(req.body.password, salt);
