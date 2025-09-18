@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
-    "start": "nodemon index.js"
+    "start": "npm index.js"
   },
-  "author": "",
+  "author": "Deepak Goyal",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -18,8 +18,5 @@
     "express-validator": "^6.15.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.21"
   }
 }
