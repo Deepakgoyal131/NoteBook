@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import noteContext from '../context/notes/noteContext'
 import './Note.css'
 
@@ -9,6 +9,24 @@ const AddNote = () => {
 
     const [note, setNote] = useState({title:"",description:"",tag:""})
     
+      const [greeting, setGreeting] = useState('');
+
+  useEffect(() => {
+    const getGreeting = () => {
+      const hour = new Date().getHours();
+
+      if (hour >= 5 && hour < 12) {
+        return 'Good Morning';
+      } else if (hour >= 12 && hour < 17) {
+        return 'Good Afternoon';
+      } else {
+        return 'Good Evening';
+      }
+    };
+
+    setGreeting(getGreeting());
+  }, []);
+
     const handleClick = (e)=>{
         e.preventDefault();
         addNote(note.title,note.description,note.tag);
@@ -22,7 +40,7 @@ const AddNote = () => {
   return (
     <div className="note-container">
       <div className="note-header">
-        <h2>Welcome {localStorage.getItem('name')}</h2>
+        <h2>{greeting}, {localStorage.getItem('name')}</h2>
         <p>Capture your thoughts, ideas, and reminders</p>
       </div>
       <form className="note-form">
