@@ -60,13 +60,22 @@ const Navbar = () => {
                     ) : (
                         <div className="nav-buttons">
                             <Link 
-                                to="/user" 
+                                to="/user/notes" 
                                 className={`nav-link primary ${location.pathname === '/user' ? 'active' : ''}`}
                                 onClick={closeMenu}
                                 aria-current={location.pathname === '/user' ? 'page' : undefined}
                             >
                                 <i className="fas fa-home"></i>
                                 <span>My Notes</span>
+                            </Link>
+                            <Link 
+                                to="/user" 
+                                className={`nav-link primary ${location.pathname === '/user' ? 'active' : ''}`}
+                                onClick={closeMenu}
+                                aria-current={location.pathname === '/user' ? 'page' : undefined}
+                            >
+                                <i class="fas fa-sticky-note"></i>
+                                <span>Add Note</span>
                             </Link>
                             <button 
                                 onClick={handleLogout} 

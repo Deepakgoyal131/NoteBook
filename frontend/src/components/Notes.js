@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import noteContext from '../context/notes/noteContext'
 import Noteitem from './Noteitem';
-import AddNote from './AddNote'
 import { useNavigate } from 'react-router-dom';
 import './Note.css';
 
@@ -47,9 +46,11 @@ const Notes = (props) => {
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
   }
+
+  
   return (
     <>
-      <AddNote/>
+      
       <button type="button" ref={ref} className="btn btn-primary d-none" data-toggle="modal" data-target="#exampleModal" id="D">
         Launch demo modal
       </button>
@@ -141,7 +142,7 @@ const Notes = (props) => {
         ) : (
           <div className="notes-grid">
             {notes.map((note) => (
-              <Noteitem key={note._id} updateNote={updateNote} note={note} />
+              <Noteitem key={note._id} updateNote={updateNote} note={note}  />
             ))}
           </div>
         )}

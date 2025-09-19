@@ -6,8 +6,9 @@ const Noteitem = (props) => {
     const context = useContext(noteContext);
     const { note , updateNote} = props;
     const { deleteNote } = context;
-     
+
     return (
+        <>
         <div className='col-md-4 col-lg-3 mb-4'>       
             <div className="note-card">
                 <div className="note-card-body">
@@ -36,6 +37,7 @@ const Noteitem = (props) => {
                 </div> 
             </div>
         </div>
+    </>
     )
 }
 

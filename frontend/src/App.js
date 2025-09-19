@@ -46,7 +46,7 @@ function App() {
             
             <Routes>
               <Route exact path='/' element={<NoteBookInfo />} />
-              <Route exact path='/user' element={<Home showAlert={showAlert} />} />
+              <Route exact path='/user/*' element={<Home showAlert={showAlert} />} />
               <Route exact path='/login' element={<Signin showAlert={showAlert} />} />
               <Route exact path='/signup' element={<Signup showAlert={showAlert} />} />
             </Routes>

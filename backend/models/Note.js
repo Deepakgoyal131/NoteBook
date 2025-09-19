@@ -17,11 +17,7 @@ const NotesSchema = new Schema({
   tag: {
     type:String, 
     default:"General"
-  },
-  name: {
-    type:Date,
-    default: Date.now
   }
-  });
+});
 
   module.exports = mongoose.model('notes',NotesSchema)
