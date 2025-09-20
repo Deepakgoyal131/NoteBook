@@ -15,7 +15,7 @@ import Alert from './components/Alert';
 import Footer from './components/Footer';
 import { useState } from 'react';
 
-function App() {
+function App() {  
   const [alert, setAlert] = useState(null);
 
   const showAlert = (message, type) => {
@@ -36,13 +36,7 @@ function App() {
               <Alert alert={alert} />
           </div>
           <div className="main-container">
-            <header className="app-header">
-              <h1 className="app-title">
-                <i className="fas fa-book-open"></i>
-                NoteBook
-              </h1>
-              <p className="app-subtitle">Your personal digital notebook for capturing ideas and thoughts</p>
-            </header>
+            
             
             <Routes>
               <Route exact path='/' element={<NoteBookInfo />} />

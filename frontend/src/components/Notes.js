@@ -24,6 +24,7 @@ const Notes = (props) => {
   const ref = useRef(null)
   const refCloss = useRef(null)
   const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "default" })
+  const [searchedNotes,setSearchedNotes] = useState([]);
 
   const updateNote = (currentNote) => {
     ref.current.click();
@@ -47,10 +48,14 @@ const Notes = (props) => {
     setNote({ ...note, [e.target.name]: e.target.value });
   }
 
+  const searchingNotes = (e)=>{
+    let searchText = e.target.value.toLocaleLowerCase();
+    setSearchedNotes(notes.filter((note)=>{ return note.title.toLocaleLowerCase().includes(searchText)}))
+  }
+
   
   return (
     <>
-      
       <button type="button" ref={ref} className="btn btn-primary d-none" data-toggle="modal" data-target="#exampleModal" id="D">
         Launch demo modal
       </button>
@@ -130,7 +135,10 @@ const Notes = (props) => {
         <div className="notes-header">
           <h1 className="notes-title">Your Notes</h1>
         </div>
-        
+        <div  className="note-form-group" style={{marginBottom: '5px'}}>
+          <input type="search" onChange={searchingNotes} placeholder='Search Notes'/>
+        </div>
+          
         {notes.length === 0 ? (
           <div className="empty-notes">
             <div className="empty-notes-icon">
@@ -141,9 +149,12 @@ const Notes = (props) => {
           </div>
         ) : (
           <div className="notes-grid">
-            {notes.map((note) => (
+            {searchedNotes.length > 0 ? (searchedNotes.map((note)=>{
+              return <Noteitem key={note._id} updateNote={updateNote} note={note}  />
+            })):
+            (notes.map((note) => (
               <Noteitem key={note._id} updateNote={updateNote} note={note}  />
-            ))}
+            )))}
           </div>
         )}
       </div>
